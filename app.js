@@ -1,7 +1,13 @@
 const express = require("express");
 const app = express();
+const db = require('./config/keys').mongoURI
+const mongoose = require('mongoose');
 
-app.get("/", (req, res) => res.send("Hello World"));
+mongoose.connect(db, {useNewUrlParser: true})
+  .then(() => console.log("connected to MongoDB successfully"))
+  .catch(err => console.log(err));
+
+app.get("/", (req, res) => res.send("Hello Test"));
 
 const port = process.env.PORT || 5000;
 
