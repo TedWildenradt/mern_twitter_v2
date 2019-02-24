@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const users = require("./routes/api/users");
 const tweets = require("./routes/api/tweets");
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 
 mongoose.connect(db, {useNewUrlParser: true})
@@ -12,6 +13,10 @@ mongoose.connect(db, {useNewUrlParser: true})
   .catch(err => console.log(err));
 
 app.get("/", (req, res) => res.send("Hello Test"));
+
+app.use(passport.initialize());
+require('./config/passport')(passport);
+
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json());
