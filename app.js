@@ -17,7 +17,6 @@ app.get("/", (req, res) => res.send("Hello Test"));
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
-
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json());
 
